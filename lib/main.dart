@@ -125,20 +125,29 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final title = 'Grid List';
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter 3D Demo',
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: const Text("Flutter 3D"),
+    return MaterialApp(
+      title: title,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
         ),
-        body: new Center(
-          child: new Object3D(
-            size: const Size(400.0, 400.0),
-            path: "obj/sample.obj",
-            asset: true,
-          ),
+        body: GridView.count(
+          // Create a grid with 2 columns. If you change the scrollDirection to
+          // horizontal, this produces 2 rows.
+          crossAxisCount: 2,
+          // Generate 100 widgets that display their index in the List.
+          children: List.generate(2, (index) {
+            return Center(
+              child: new Object3D(
+                size: const Size(400.0, 400.0),
+                path: "obj/sample.obj",
+                asset: true,
+              ),
+            );
+          }),
         ),
       ),
     );
